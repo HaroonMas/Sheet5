@@ -1,0 +1,84 @@
+﻿@using Sheet5v1.Models;
+@model Sheet5v1.Models.Class1
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<table border="0">
+    <tr>
+        <th colspan="2" class="text-center "><h2>StarSubs Receipt</h2></th>
+    </tr>
+    <tr>
+        <td colspan="2" class="text-center"><h3> Today's date: @DateTime.Today.ToLongDateString()</h3></td>
+    </tr>
+
+    @{
+        if (TempData["newList"] != null)
+        {
+            List<Class1> order = new List<Class1>();
+            order = (List<Class1>)TempData["newList"];
+            TempData.Keep("newList");
+
+            for (var i = 0; i < order.Count; i++)
+            {
+                int count = i + 1;
+                <tr>
+                    <td>Order number:</td>
+                    <td>@count</td>
+                </tr>
+                <tr>
+                    <td>Sub Type: </td>
+                    <td>@order[i].Subs</td>
+                </tr>
+                <tr>
+                    <td>Sub Size: </td>
+                    <td>@order[i].size</td>
+                </tr>
+                <tr>
+                    <td>Meal Type: </td>
+                    <td>@order[i].Meal</td>
+                </tr>
+                <tr>
+                    <td>Quantity: </td>
+                    <td>@order[i].Quantity</td>
+                </tr>
+                <tr>
+                    <td colspan="2"> ___________________________ </td>
+
+                </tr>
+
+            }
+        } }
+    <tr>
+        <td>Total Taxes :</td>
+        <td>
+            @{ if (@TempData["TotalTaxes"] != null)
+                {
+                    double data = Convert.ToDouble(TempData.Peek("TotalTaxes"));
+                    TempData.Keep("Totaltaxes");
+                    <p>@data</p>
+                }
+            }
+        </td>
+    </tr>
+    <tr>
+        <td>Total Cost :</td>
+        <td>
+            @{ if (@TempData["TotalCost"] != null)
+                {
+                    double data = Convert.ToDouble(TempData.Peek("TotalCost"));
+                    TempData.Keep("TotalCost");
+                    <p>@data</p>
+                }
+            }
+        </td>
+    </tr>
+    <tr>
+        <th colspan="2" class="text-center">
+            @Html.ActionLink("Place another order", "Index", "Home")
+        </th>
+    </tr>
+</table>
+

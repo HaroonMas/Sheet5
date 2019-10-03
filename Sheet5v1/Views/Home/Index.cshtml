@@ -1,0 +1,55 @@
+﻿@using Sheet5v1.Models;
+@model Sheet5v1.Models.Class1
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@using (Html.BeginForm("Index", "Home"))
+{
+
+    <div class="order_form" style="width:600px;margin:auto">
+        <div class="order-form-item">
+
+            <div class="order-form-list">
+                <p>Select a Sandwich</p>
+                @Html.ListBoxFor(x => x.Subs, new SelectList(Enum.GetValues(typeof(Class1.subTypes))))
+
+            </div>
+
+            <div class="order-form-list">
+                <p>Select a Size</p>
+                @Html.ListBoxFor(x => x.size, new SelectList(Enum.GetValues(typeof(Class1.subSize))))
+            </div>
+        </div>
+
+
+
+        <br />
+        <br />
+        <div class="order-form-button-group">
+            <p> Select a meal Deal</p>
+            <div class="order-form-radiobuttons">
+                @Html.RadioButtonFor(x => x.Meal, Class1.mealType.None, new { id = "none", name = "meal", Checked = "checked" })
+                @Html.Label("None")
+                @Html.RadioButtonFor(x => x.Meal, Class1.mealType.DrinkNChips, new { id = "drinkNchip", name = "meal" })
+                @Html.Label("Drink and Chips")
+                @Html.RadioButtonFor(x => x.Meal, Class1.mealType.DrinkNCookies, new { id = "drinkNcookie", name = "meal" })
+                @Html.Label("Drink and Cookies")
+                <br />
+                @Html.Label("Enter Quantity:")
+                @Html.TextBox("quantity")
+
+            </div>
+        </div>
+        <input type="submit" value="submit" />
+
+    </div>
+}
+
+@using (Html.BeginForm("Details", "Home", FormMethod.Get))
+{
+    <input type="submit" value="See Daily Totals" class="btn-primary" />
+}
+
+

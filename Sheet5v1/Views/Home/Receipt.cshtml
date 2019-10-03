@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Receipt";
+}
+
+
+    <table border="0">
+        <tr>
+            <th colspan="2" class="text-center "><h2>StarSubs Receipt</h2></th>
+        </tr>
+        <tr>
+            <td colspan="2" class="text-center"><h3> Today's date: @DateTime.Today.ToLongDateString()</h3></td>
+        </tr>
+        <tr>
+            <td>Type of Sub :</td>
+            <td>@TempData["subName"]</td>
+        </tr>
+        <tr>
+            <td>Size of Sub :</td>
+            <td>@TempData["subSize"]</td>
+        </tr>
+        <tr>
+            <td>Type of Meal Deal : </td>
+            <td>@TempData["subMeal"]</td>
+        </tr>
+        <tr>
+            <td>Total Price of Sub : </td>
+            <td>@TempData["TypeNSizeTotal"]</td>
+        </tr>
+        <tr>
+            <td>Price of Meal Deal :</td>
+            <td>@TempData["mealprice"]</td>
+        </tr>
+        <tr>
+            <td>Cost of a sub : </td>
+            <td>@TempData["subTotal"]</td>
+        </tr>
+        <tr>
+            <td>Tax : </td>
+            <td>@TempData["tax"]</td>
+        </tr>
+        <tr>
+            <td>Quantity :</td>
+            <td>@TempData["quantity"]</td>
+        </tr>
+        <tr>
+            <td>Total Due :</td>
+            <td>@TempData["Total"]</td>
+        </tr>
+        <tr>
+            <th colspan="2" class="text-center">
+                @Html.ActionLink("Place another order", "Index", "Home")
+            </th>
+        </tr>
+
+    </table>
+
